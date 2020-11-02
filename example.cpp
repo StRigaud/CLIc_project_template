@@ -5,25 +5,29 @@
 *
 */
 
-
+// CLIc include
 #include "CLE.h"
 
+// I/O include
 #include "tiffreader.h"
 #include "tiffwriter.h"
 
+// Set CLIc Namespace
+using namespace cle;
+
 /**
- * Main test function
- *
+ * Main function
  */
 int main(int argc, char **argv)
 {
     if (argc < 2)
     {
-        std::cerr << << std::endl;
+        std::cerr << "Usage: argv[0] filename [filename]" << std::endl;
+        return EXIT_FAILURE;
     }
     
     /*
-     * Manage input and output filename.
+     * Manage input and output of the executable.
      */ 
     std::string inputFilename = argv[1];
     std::string outputFilename = "./output.tif";
@@ -36,15 +40,14 @@ int main(int argc, char **argv)
      * Read image from filename.
      */ 
     unsigned int width, height, depth;
-    TiffReader reader (inputFilename.str_c());
-    float* array = reader.read(width, height, depth);
-    Image<float> image (array, width, height, depth, "float");
-
+    TiffReader reader(inputFilename.c_str());
+    float* array = reader.read(&width, &height, &depth);
+    Image<float> image(array, width, height, depth, "float");
 
 
 
     /**
-     * Paste your CLIc code here :)
+     * Paste your clEsperento - CLIc code here ! 
      */
 
 
@@ -52,10 +55,11 @@ int main(int argc, char **argv)
     /*
      * Write image to filename.
      */ 
-    unsigned int width, height, depth;
-    TiffWriter writer (inputFilename.str_c());
+    TiffWriter writer(outputFilename.c_str());
     writer.write(image.GetData(), width, height, depth);
 
-    // That's all folks!
+    /*
+     * That's all folks!
+     */ 
     return EXIT_SUCCESS;
 }
