@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 # project name
-project(example)
+project(clic_script)
 
 # find required libraries
 find_package(OpenCL REQUIRED)
@@ -11,7 +11,7 @@ find_package(CLIc REQUIRED)
 
 # list source files
 set( sources
-  example.cpp
+  script.cpp
   )
 
 # define compilation target and linkage
