@@ -5,6 +5,8 @@ cmake_minimum_required(VERSION 3.0)
 project(example)
 
 # find required libraries
+find_package(OpenCL REQUIRED)
+find_package(TIFF REQUIRED)
 find_package(CLIc REQUIRED)
 
 # list source files
